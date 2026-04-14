@@ -28,6 +28,11 @@ const CONFIG = {
     LOG_CHANNEL: '1469911922886443141',
     ADMIN_ROLE_ID: '1435255770609487932', 
     QRIS_FILE_NAME: 'qrisgopay.png' 
+    ALLOWED_CHANNELS: [
+        '1449340767347933268', 
+        '1449385133864914995' ,
+        '1449339948049236089'// Tambahkan ID channel lain di sini, pisahkan dengan koma
+    ]
 };
 
 // --- DAFTAR KATA KASAR ---
@@ -179,7 +184,7 @@ client.on('messageCreate', async (message) => {
     if (foundBadWord) {
         try {
             await message.delete();
-            return message.channel.send(`Hey ${message.author}, astagfirullah tidak boleh mengetik kata **"${foundBadWord}"** itu ya!`);
+            return message.channel.send(`Hey ${message.author}, astagfirullah tidak boleh mengetik kata kata kasar yah sayang!`);
         } catch (error) {
             console.error('[ERROR] Gagal menghapus pesan kasar:', error);
         }
@@ -187,14 +192,14 @@ client.on('messageCreate', async (message) => {
     }
 
 
-    // 2. LOGIKA AUTO RESPONSE (Hanya di channel spesifik)
-    const TARGET_CHANNEL_ID = '1449340767347933268'; 
-
-    if (message.channel.id === TARGET_CHANNEL_ID) {
+    // 2. AUTO RESPONSE (Hanya jalan di channel yang ada dalam daftar ALLOWED_CHANNELS)
+    if (CONFIG.ALLOWED_CHANNELS.includes(message.channel.id)) {
         const autoResponses = [
             `Halo ${message.author.username}! Ada yang bisa dibantu?`,
             "Halo! kak kenapa nih apakah anda sedang kesusahan jika sedang kesusahan tunggu saja ya nanti akan di respon oleh <@&1435256476011860171>",
-            "Admin akan segera merespon chat kamu, mohon ditunggu ya."
+            "Admin akan segera merespon chat kamu, mohon ditunggu ya.",
+            "Kenapa sayang ih, kamu kangen aku ya, jangan kangen kangen ya mending login aja.",
+            "Kenapa sayang kangen?, ih sini ||login|| ih bareng aku."
         ];
 
         if (Math.random() < 0.3) {
