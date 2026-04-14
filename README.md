@@ -1,1 +1,1 @@
-# excellence-ottibonynyo-mods
+# ottibonynyo-mods-bot
