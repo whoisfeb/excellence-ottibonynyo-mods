@@ -169,19 +169,23 @@ client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
     // 1. LOGIKA ANTI-BADWORD (Berjalan di SEMUA channel)
-    // Menggunakan .find() untuk menangkap kata yang terdeteksi
-    const foundBadWord = BADWORDS.find(word => message.content.toLowerCase().includes(word));
-
+    // 1. LOGIKA ANTI-BADWORD (Lebih Akurat)
+    // Regex ini memastikan kata kasar harus berdiri sendiri (bukan bagian dari kata lain)
+    const foundBadWord = BADWORDS.find(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'i'); // \b adalah boundary (batas kata)
+        return regex.test(message.content);
+    });
+    
     if (foundBadWord) {
         try {
             await message.delete();
-            // Menampilkan kata yang dilarang di dalam pesan peringatan
             return message.channel.send(`Hey ${message.author}, astagfirullah tidak boleh mengetik kata **"${foundBadWord}"** itu ya!`);
         } catch (error) {
             console.error('[ERROR] Gagal menghapus pesan kasar:', error);
         }
         return; 
     }
+
 
     // 2. LOGIKA AUTO RESPONSE (Hanya di channel spesifik)
     const TARGET_CHANNEL_ID = '1449340767347933268'; 
