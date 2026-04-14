@@ -195,7 +195,7 @@ client.on('messageCreate', async (message) => {
     // 2. AUTO RESPONSE (Hanya jalan di channel yang ada dalam daftar ALLOWED_CHANNELS)
     if (CONFIG.ALLOWED_CHANNELS.includes(message.channel.id)) {
         const autoResponses = [
-            `Halo ${message.author.username}! Ada yang bisa dibantu?`,
+            `Halo <@${message.author.id}>! Ada yang bisa dibantu?`,
             "Halo! kak kenapa nih apakah anda sedang kesusahan jika sedang kesusahan tunggu saja ya nanti akan di respon oleh <@&1435256476011860171>",
             "Admin akan segera merespon chat kamu, mohon ditunggu ya.",
             "Kenapa sayang ih, kamu kangen aku ya, jangan kangen kangen ya mending login aja.",
