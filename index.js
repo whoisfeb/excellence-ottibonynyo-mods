@@ -164,10 +164,11 @@ client.on('interactionCreate', async (interaction) => {
 });
 
 // --- EVENT: MESSAGE MONITORING (ANTI-BADWORD & AUTO RESPONSE) ---
+// --- EVENT: MESSAGE MONITORING (ANTI-BADWORD & AUTO RESPONSE) ---
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
-    // 1. LOGIKA ANTI-BADWORD
+    // 1. LOGIKA ANTI-BADWORD (Berjalan di SEMUA channel)
     const foundBadWord = BADWORDS.some(word => message.content.toLowerCase().includes(word));
 
     if (foundBadWord) {
@@ -177,19 +178,23 @@ client.on('messageCreate', async (message) => {
         } catch (error) {
             console.error('[ERROR] Gagal menghapus pesan kasar:', error);
         }
-        return; // Berhenti di sini jika pesan mengandung kata kasar
+        return; 
     }
 
-    // 2. LOGIKA AUTO RESPONSE
-    const autoResponses = [
-        `Halo ${message.author.username}! Ada yang bisa dibantu?`,
-        "Halo! kak kenapa nih apakah anda sedang kesusahan jika sedang kesusahan tunggu saja ya nanti akan di respon oleh <@&1435256476011860171>",
-        "Admin akan segera merespon chat kamu, mohon ditunggu ya."
-    ];
+    // 2. LOGIKA AUTO RESPONSE (Hanya di channel spesifik)
+    const TARGET_CHANNEL_ID = '1449340767347933268'; // Ganti dengan ID channel tujuan
 
-    if (Math.random() < 0.3) {
-        message.reply(autoResponses[Math.floor(Math.random() * autoResponses.length)]);
+    if (message.channel.id === TARGET_CHANNEL_ID) {
+        const autoResponses = [
+            `Halo ${message.author.username}! Ada yang bisa dibantu?`,
+            "Halo! kak kenapa nih apakah anda sedang kesusahan jika sedang kesusahan tunggu saja ya nanti akan di respon oleh <@&1435256476011860171>",
+            "Admin akan segera merespon chat kamu, mohon ditunggu ya."
+        ];
+
+        // Peluang 30% untuk merespon
+        if (Math.random() < 0.3) {
+            message.reply(autoResponses[Math.floor(Math.random() * autoResponses.length)]);
+        }
     }
 });
 
-client.login(CONFIG.TOKEN);
