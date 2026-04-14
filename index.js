@@ -95,7 +95,7 @@ client.once('ready', async () => {
         const announceChannel = client.channels.cache.get(CONFIG.ANNOUNCE_CHANNEL);
         if (announceChannel) {
             const text = RANDOM_MESSAGES[Math.floor(Math.random() * RANDOM_MESSAGES.length)];
-            announceChannel.send(`📢 **INFO STORE**\n\n${text}`);
+            announceChannel.send(`📢 **Excellence Guard**\n\n${text}`);
         }
     }, 3600000);
 });
