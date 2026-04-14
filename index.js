@@ -22,23 +22,28 @@ const client = new Client({
 // --- KONFIGURASI ---
 const CONFIG = {
     TOKEN: process.env.DISCORD_TOKEN,
-    CLIENT_ID: '1486187371476029610', 
-    GUILD_ID: '1112618217421148210',  
-    ANNOUNCE_CHANNEL: '1493465308327837696',
-    LOG_CHANNEL: '1486632361155362847',
-    ADMIN_ROLE_ID: '1112618217421148212', 
+    CLIENT_ID: '1493474526464442469', 
+    GUILD_ID: '1435214111121084500',  
+    ANNOUNCE_CHANNEL: '1449361056425054381',
+    LOG_CHANNEL: '1469911922886443141',
+    ADMIN_ROLE_ID: '1435255770609487932', 
     QRIS_FILE_NAME: 'qrisgopay.png' 
 };
 
 // --- DAFTAR KATA KASAR ---
-const BADWORDS = ['pler', 'kontol', 'memek', 'anjing', 'bgst', 'tolol', 'bangsat'];
+const BADWORDS = [
+  'free', 'tolol', 'goblok', 'bego', 'pepek', 'dongo', 'tai', 'kontol', 
+  'bio', 'sexcam', 'entot', 'ngentot', 'join', 'invite', 'anjing', 
+  'babi', 'memek', 'ngewe', 'ewe', 'lonte', 'pler', 'bgst', 'bangsat'
+];
+
 
 const RANDOM_MESSAGES = [
-    "Butuh bantuan? Admin kami siap melayani di jam operasional!",
-    "Jika ingin mendapatkan special mods dari ottibonynyo mods silahkan ke channel <#1466660218686668894> jika no acces silahkan <#1486252838186127360> terlebih dahulu ya. 🔥",
-    "Pembayaran aman dan cepat via QRIS & Bank Transfer.",
-    "Jangan lupa untuk selalu sopan dalam berinteraksi ya!",
-    "Terima kasih telah mendukung komunitas ini!"
+    "Ayo Login dan Ramaikan Excellence Roleplay\n@everyone!",
+    "Halo apakabar semua ap akah kalian sehat sehat saja?\nAlhamdulillah jika anda sehat sehat saja\nAyo kita ramaikan Excellence Roleplay jika anda menemukan bug silahkan laporkan ke <#1449406590661689405>, namun jika anda melihat player yang melakukan kesalahan silahkan laporkan di <#1449612905736573121>\n@everyone",
+    "Excellence Roleplay adalah server terbaik sepanjang masa\n Jangan lupa share link discord Excellence Roleplay ke teman, keluarga atau bahkan grup sekolah kalian ya\nhttps://discord.gg/j2sXhvc9hN\n@everyone.",
+    "Halo @everyone , seru ga bermain di Excellence? apa? anda baru join? kalau baru join langsung <#1449372083594330233>",
+    "Kami segenap pengurus Excellence Roleplay berterima kasih ke kalian yang telah mendukung komunitas ini \n @everyone!"
 ];
 
 // --- REGISTER SLASH COMMANDS ---
@@ -79,7 +84,7 @@ client.once('ready', async () => {
             .setColor(0x2ECC71)
             .setTitle('🚀 System Core Online')
             .addFields(
-                { name: '📡 Status', value: '` Operational `', inline: true },
+                { name: '📡 Status', value: '` Online `', inline: true },
                 { name: '⚡ Latency', value: `\` ${client.ws.ping}ms \``, inline: true }
             )
             .setTimestamp();
@@ -178,7 +183,7 @@ client.on('messageCreate', async (message) => {
     // 2. LOGIKA AUTO RESPONSE
     const autoResponses = [
         `Halo ${message.author.username}! Ada yang bisa dibantu?`,
-        "Halo! Kalau mau order atau request lua atau hanya ingin bertanya silahkan <#1144295586154151996> aja ya",
+        "Halo! kak kenapa nih apakah anda sedang kesusahan jika sedang kesusahan tunggu saja ya nanti akan di respon oleh <@&1435256476011860171>",
         "Admin akan segera merespon chat kamu, mohon ditunggu ya."
     ];
 
