@@ -198,3 +198,4 @@ client.on('messageCreate', async (message) => {
     }
 });
 
+client.login(CONFIG.DISCORD_TOKEN);
