@@ -27,10 +27,10 @@ const CONFIG = {
     ANNOUNCE_CHANNEL: '1449361056425054381',
     LOG_CHANNEL: '1469911922886443141',
     ADMIN_ROLE_ID: '1435255770609487932', 
-    QRIS_FILE_NAME: 'qrisgopay.png' 
+    QRIS_FILE_NAME: 'qrisgopay.png' ,
     ALLOWED_CHANNELS: [
         '1449340767347933268', 
-        '1449385133864914995' ,
+        '1449385133864914995',
         '1449339948049236089'// Tambahkan ID channel lain di sini, pisahkan dengan koma
     ]
 };
