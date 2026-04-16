@@ -339,11 +339,7 @@ COMING SOON
                 .setFooter({ text: 'Community Store - Jika ada kendala, hubungi admin!' })
                 .setTimestamp();
 
-            await interaction.reply({ 
-                embeds: [bankEmbed],
-                components: [copyRow],
-                ephemeral: false 
-            });
+            
         }
 
         // ============= TOMBOL: E-WALLET (GOPAY & DANA) =============
@@ -438,11 +434,7 @@ Aldo Arnando
                 .setFooter({ text: 'Excellence X Ottibonynyo • Instant & Aman!' })
                 .setTimestamp();
 
-            await interaction.reply({ 
-                embeds: [ewalletEmbed],
-                components: [copyRow],
-                ephemeral: false 
-            });
+            
         }
 
         // ============= TOMBOL: QRIS =============
