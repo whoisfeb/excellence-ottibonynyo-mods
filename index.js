@@ -336,33 +336,8 @@ COMING SOON
                         inline: false
                     }
                 )
-                .setFooter({ text: 'Community Store • Jika ada kendala, hubungi admin!' })
+                .setFooter({ text: 'Community Store - Jika ada kendala, hubungi admin!' })
                 .setTimestamp();
-
-            // Tombol untuk copy nomor rekening & nama
-            const copyRow = new ActionRowBuilder()
-                .addComponents(
-                    new ButtonBuilder()
-                        .setCustomId('copy_bri_number')
-                        .setLabel('Copy BRI')
-                        .setEmoji('📋')
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId('copy_bri_name')
-                        .setLabel('Copy Nama BRI')
-                        .setEmoji('👤')
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId('copy_mandiri_number')
-                        .setLabel('Copy Mandiri')
-                        .setEmoji('📋')
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId('copy_mandiri_name')
-                        .setLabel('Copy Nama Mandiri')
-                        .setEmoji('👤')
-                        .setStyle(ButtonStyle.Secondary)
-                );
 
             await interaction.reply({ 
                 embeds: [bankEmbed],
@@ -460,33 +435,8 @@ Aldo Arnando
                         inline: false
                     }
                 )
-                .setFooter({ text: 'Community Store • Instant & Aman!' })
+                .setFooter({ text: 'Excellence X Ottibonynyo • Instant & Aman!' })
                 .setTimestamp();
-
-            // Tombol untuk copy nomor e-wallet & nama
-            const copyRow = new ActionRowBuilder()
-                .addComponents(
-                    new ButtonBuilder()
-                        .setCustomId('copy_gopay_number')
-                        .setLabel('Copy GoPay')
-                        .setEmoji('📋')
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId('copy_gopay_name')
-                        .setLabel('Copy Nama GoPay')
-                        .setEmoji('👤')
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId('copy_dana_number')
-                        .setLabel('Copy Dana')
-                        .setEmoji('📋')
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId('copy_dana_name')
-                        .setLabel('Copy Nama Dana')
-                        .setEmoji('👤')
-                        .setStyle(ButtonStyle.Secondary)
-                );
 
             await interaction.reply({ 
                 embeds: [ewalletEmbed],
@@ -560,7 +510,7 @@ Aldo Arnando
                         inline: false
                     }
                 )
-                .setFooter({ text: 'Community Store • Scan & Bayar dalam 30 detik!' })
+                .setFooter({ text: 'Excellence X Ottibonynyo • Scan & Bayar dalam 30 detik!' })
                 .setTimestamp();
 
             const qrisFile = new AttachmentBuilder(`./${CONFIG.QRIS_FILE_NAME}`);
@@ -569,64 +519,6 @@ Aldo Arnando
                 embeds: [qrisEmbed],
                 files: [qrisFile],
                 ephemeral: false 
-            });
-        }
-
-        // ============= HANDLER TOMBOL COPY BANK =============
-        if (interaction.customId === 'copy_bri_number') {
-            await interaction.reply({ 
-                content: '✅ **Nomor BRI sudah disalin ke clipboard:**\n```\n0021-01-xxxxxx\n```\n*Siap untuk dipaste ke aplikasi bank Anda*',
-                ephemeral: true 
-            });
-        }
-
-        if (interaction.customId === 'copy_bri_name') {
-            await interaction.reply({ 
-                content: '✅ **Nama BRI sudah disalin ke clipboard:**\n```\nPT. Excellence Gaming\n```\n*Pastikan nama cocok saat transfer*',
-                ephemeral: true 
-            });
-        }
-
-        if (interaction.customId === 'copy_mandiri_number') {
-            await interaction.reply({ 
-                content: '✅ **Nomor Mandiri sudah disalin ke clipboard:**\n```\n124-00-xxxxxx\n```\n*Siap untuk dipaste ke aplikasi bank Anda*',
-                ephemeral: true 
-            });
-        }
-
-        if (interaction.customId === 'copy_mandiri_name') {
-            await interaction.reply({ 
-                content: '✅ **Nama Mandiri sudah disalin ke clipboard:**\n```\nPT. Excellence Gaming\n```\n*Pastikan nama cocok saat transfer*',
-                ephemeral: true 
-            });
-        }
-
-        // ============= HANDLER TOMBOL COPY E-WALLET =============
-        if (interaction.customId === 'copy_gopay_number') {
-            await interaction.reply({ 
-                content: '✅ **Nomor GoPay sudah disalin ke clipboard:**\n```\n0812-xxxx-xxxx\n```\n*Siap untuk dipaste ke aplikasi GoPay Anda*',
-                ephemeral: true 
-            });
-        }
-
-        if (interaction.customId === 'copy_gopay_name') {
-            await interaction.reply({ 
-                content: '✅ **Nama GoPay sudah disalin ke clipboard:**\n```\nToko Kamu\n```\n*Pastikan nama cocok saat transfer*',
-                ephemeral: true 
-            });
-        }
-
-        if (interaction.customId === 'copy_dana_number') {
-            await interaction.reply({ 
-                content: '✅ **Nomor Dana sudah disalin ke clipboard:**\n```\n081368936839\n```\n*Siap untuk dipaste ke aplikasi Dana Anda*',
-                ephemeral: true 
-            });
-        }
-
-        if (interaction.customId === 'copy_dana_name') {
-            await interaction.reply({ 
-                content: '✅ **Nama Dana sudah disalin ke clipboard:**\n```\nAldo Arnando\n```\n*Pastikan nama cocok saat transfer*',
-                ephemeral: true 
             });
         }
     }
