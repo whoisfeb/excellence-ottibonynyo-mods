@@ -242,6 +242,11 @@ client.on('interactionCreate', async (interaction) => {
                         .setLabel('Nomor GoPay')
                         .setEmoji('📱')
                         .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
+                        .setCustomId('pay_dana_info')
+                        .setLabel('Nomor Dana')
+                        .setEmoji('📱')
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
             await interaction.reply({ 
@@ -263,6 +268,12 @@ client.on('interactionCreate', async (interaction) => {
         if (interaction.customId === 'pay_gopay_info') {
             await interaction.reply({ 
                 content: '📌 **Detail GoPay:**\nNomor: `0812-xxxx-xxxx` (A/N Toko Kamu)\n\n*Kirim bukti transfer ke admin jika sudah membayar.*', 
+                ephemeral: true 
+            });
+        }
+        if (interaction.customId === 'pay_dana_info') {
+            await interaction.reply({ 
+                content: '📌 **Detail Dana:**\nNomor: `081368936839` (A/N Aldo Arnando)\n\n*Kirim bukti transfer ke admin jika sudah membayar.*', 
                 ephemeral: true 
             });
         }
