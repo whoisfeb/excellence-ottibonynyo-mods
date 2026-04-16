@@ -31,7 +31,7 @@ const CONFIG = {
     ALLOWED_CHANNELS: [
         '1449340767347933268', 
         '1449385133864914995',
-        '1449339948049236089'// Tambahkan ID channel lain di sini, pisahkan dengan koma
+        '1449339948049236089'
     ]
 };
 
@@ -41,7 +41,6 @@ const BADWORDS = [
   'bio', 'sexcam', 'entot', 'ngentot', 'join', 'invite', 'anjing', 
   'babi', 'memek', 'ngewe', 'ewe', 'lonte', 'pler', 'bgst', 'bangsat'
 ];
-
 
 const RANDOM_MESSAGES = [
     "Ayo Login dan Ramaikan Excellence Roleplay\n@everyone!",
@@ -179,10 +178,18 @@ client.once('ready', async () => {
     console.log(`[LOG] Berhasil masuk sebagai ${client.user.tag}`);
     await registerCommands();
 
+    // ========== SET STATUS BOT ==========
     client.user.setPresence({
-        activities: [{ name: 'Community Store', type: ActivityType.Watching }],
+        activities: [
+            { 
+                name: 'Ottibonynyo Mods', 
+                type: ActivityType.Playing 
+            }
+        ],
         status: 'online',
     });
+    console.log('[LOG] Status bot telah diubah menjadi ONLINE');
+    // ====================================
 
     const logChannel = client.channels.cache.get(CONFIG.LOG_CHANNEL);
     if (logChannel) {
@@ -207,7 +214,6 @@ client.once('ready', async () => {
 });
 
 // --- EVENT: INTERACTION (SLASH COMMANDS & BUTTONS) ---
-// --- EVENT: INTERACTION (SLASH COMMANDS & BUTTONS) ---
 client.on('interactionCreate', async (interaction) => {
     
     if (interaction.isChatInputCommand()) {
@@ -217,7 +223,7 @@ client.on('interactionCreate', async (interaction) => {
             if (!interaction.member.roles.cache.has(CONFIG.ADMIN_ROLE_ID)) {
                 return interaction.reply({ 
                     content: '❌ Kamu tidak memiliki izin (Role Admin) untuk menggunakan perintah ini!', 
-                    ephemeral: true 
+                    flags: 64
                 });
             }
 
@@ -247,11 +253,10 @@ client.on('interactionCreate', async (interaction) => {
                         .setStyle(ButtonStyle.Success),
                 );
 
-            // Hanya admin yang bisa melihat tombol (ephemeral: true)
             await interaction.reply({ 
                 embeds: [paymentEmbed],
                 components: [row],
-                ephemeral: true
+                flags: 64
             });
         }
     }
@@ -290,7 +295,6 @@ COMING SOON
 \`\`\`
 COMING SOON
 \`\`\`
-*Klik pada text di atas untuk disalin*
                         `,
                         inline: false
                     },
@@ -305,7 +309,6 @@ COMING SOON
 \`\`\`
 COMING SOON
 \`\`\`
-*Klik pada text di atas untuk disalin*
                         `,
                         inline: false
                     },
@@ -339,7 +342,10 @@ COMING SOON
                 .setFooter({ text: 'Community Store - Jika ada kendala, hubungi admin!' })
                 .setTimestamp();
 
-            
+            await interaction.reply({ 
+                embeds: [bankEmbed],
+                flags: 0
+            });
         }
 
         // ============= TOMBOL: E-WALLET (GOPAY & DANA) =============
@@ -374,7 +380,6 @@ COMING SOON
 \`\`\`
 COMING SOON
 \`\`\`
-*Klik tombol di bawah untuk disalin*
                         `,
                         inline: false
                     },
@@ -389,7 +394,6 @@ COMING SOON
 \`\`\`
 Aldo Arnando
 \`\`\`
-*Klik tombol di bawah untuk disalin*
                         `,
                         inline: false
                     },
@@ -434,7 +438,10 @@ Aldo Arnando
                 .setFooter({ text: 'Excellence X Ottibonynyo • Instant & Aman!' })
                 .setTimestamp();
 
-            
+            await interaction.reply({ 
+                embeds: [ewalletEmbed],
+                flags: 0
+            });
         }
 
         // ============= TOMBOL: QRIS =============
@@ -510,7 +517,7 @@ Aldo Arnando
             await interaction.reply({ 
                 embeds: [qrisEmbed],
                 files: [qrisFile],
-                ephemeral: false 
+                flags: 0
             });
         }
     }
@@ -520,7 +527,6 @@ Aldo Arnando
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
-    // 1. LOGIKA ANTI-BADWORD (Berjalan di SEMUA channel)
     const foundBadWord = BADWORDS.find(word => {
         const regex = new RegExp(`\\b${word}\\b`, 'i');
         return regex.test(message.content);
@@ -536,7 +542,6 @@ client.on('messageCreate', async (message) => {
         return; 
     }
 
-    // 2. AUTO RESPONSE (Hanya jalan di channel yang ada dalam daftar ALLOWED_CHANNELS)
     if (CONFIG.ALLOWED_CHANNELS.includes(message.channel.id)) {
         const autoResponses = [
             `Halo <@${message.author.id}>! Ada yang bisa dibantu?`,
