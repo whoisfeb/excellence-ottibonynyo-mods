@@ -50,7 +50,7 @@ const RANDOM_MESSAGES = [
     "Halo @everyone , seru ga bermain di Excellence? apa? anda baru join? kalau baru join langsung <#1449372083594330233>",
     "Kami segenap pengurus Excellence Roleplay berterima kasih ke kalian yang telah mendukung komunitas ini \n @everyone!",
     "⚠️ **ANNOUNCEMENT**\n\nDihimbau kepada seluruh <@&1449324471856005130> untuk **tidak sembarangan bergabung (join) ke link Discord yang tidak jelas atau tidak resmi**.\n\nKami menemukan adanya beberapa link mencurigakan yang berpotensi:\n- Mengandung scam / penipuan\n- Phishing (pencurian akun)\n- Malware / virus\n\n🔒 **Keamanan akun adalah tanggung jawab masing-masing.**\nSegala bentuk kerugian akibat join link di luar server resmi bukan tanggung jawab pihak kami.\n\n📌 **Harap diperhatikan:**\n* Hanya join link yang dibagikan oleh admin resmi\n* Jangan mudah percaya dengan DM/link dari orang tidak dikenal\n\n**Tetap waspada dan jaga keamanan akun kalian.**\n\n- <@&1435255770609487932>\n@everyone",
-    "# ANNOUNCEMENT \n\nHalo <@&1449324471856005130> 👋\nKami menegaskan bahwa server ini memiliki kebijakan **ZERO TOLERANCE** terhadap segala bentuk pelecehan, baik secara verbal, tulisan, maupun tindakan dalam roleplay maupun di luar roleplay.\n\n⚠️ Termasuk:\n• Pelecehan seksual\n• Catcalling / komentar tidak pantas\n• DM tidak sopan / mengganggu\n• Body shaming\n• Candaan berlebihan yang bersifat merendahkan\n• Pelecehan OOC maupun IC \n\nTidak ada alasan “bercanda”. Tidak ada alasan “hanya RP”. Jika melewati batas, tindakan akan diambil.\n\n📩 Jika kalian mengalami atau melihat tindakan pelecehan: Segera laporkan ke admin disertai bukti yang valid. Sanksi tegas menanti dari warning hingga **BANNED PERMANENT**.\n@everyone",
+    "# ANNOUNCEMENT \n\nHalo <@&1449324471856005130> 👋\nKami menegaskan bahwa server ini memiliki kebijakan **ZERO TOLERANCE** terhadap segala bentuk pelecehan, baik secara verbal, tulisan, maupun tindakan dalam roleplay maupun di luar roleplay.\n\n⚠️ Termasuk:\n• Pelecehan seksual\n• Catcalling / komentar tidak pantas\n• DM tidak sopan / mengganggu\n• Body shaming\n• Candaan berlebihan yang bersifat merendahkan\n• Pelecehan OOC maupun IC \n\nTidak ada alasan "bercanda". Tidak ada alasan "hanya RP". Jika melewati batas, tindakan akan diambil.\n\n📩 Jika kalian mengalami atau melihat tindakan pelecehan: Segera laporkan ke admin disertai bukti yang valid. Sanksi tegas menanti dari warning hingga **BANNED PERMANENT**.\n@everyone",
     "**INFO PERMASALAHAN SERVER**\n\n**Kesalahan Admin:** Dilarang debat OOC di game, lapor via ticket/channel resmi.\n**Bug / Error:** Wajib lapor! Dilarang memanfaatkan bug (abuse).\n**Report Player:** Gunakan fitur report dengan bukti jelas. Fitnah = Sanksi.\n**Kritik & Saran:** Sampaikan dengan sopan di channel yang disediakan.\n\nMari kita menjaga kenyamanan di Excellence Roleplay.\n#HAPPYROLEPLAY <@&1449324471856005130>\n@everyone",
     "Di Excellence Roleplay, cerita besar dimulai dari langkah kecil. Ayo buat ceritamu!\n@everyone",
     "Bukan seberapa hebat senjatamu, tapi seberapa kuat alur ceritamu di Excellence.\n@everyone",
@@ -220,13 +220,10 @@ client.on('interactionCreate', async (interaction) => {
                 });
             }
 
-            const qrisFile = new AttachmentBuilder(`./${CONFIG.QRIS_FILE_NAME}`);
-
             const paymentEmbed = new EmbedBuilder()
                 .setTitle('💳 METODE PEMBAYARAN RESMI')
                 .setColor(0x00FF00)
-                .setDescription('Scan QRIS di bawah ini atau klik tombol untuk metode pembayaran lainnya:')
-                .setImage(`attachment://${CONFIG.QRIS_FILE_NAME}`)
+                .setDescription('Pilih metode pembayaran yang kamu inginkan:')
                 .setFooter({ text: 'Community Store • Harap lampirkan bukti transfer.' })
                 .setTimestamp();
 
@@ -239,20 +236,19 @@ client.on('interactionCreate', async (interaction) => {
                         .setStyle(ButtonStyle.Primary),
                     new ButtonBuilder()
                         .setCustomId('pay_gopay_info')
-                        .setLabel('Nomor GoPay')
+                        .setLabel('E-Wallet')
                         .setEmoji('📱')
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
-                        .setCustomId('pay_dana_info')
-                        .setLabel('Nomor Dana')
-                        .setEmoji('📱')
-                        .setStyle(ButtonStyle.Secondary),
+                        .setCustomId('pay_qris_info')
+                        .setLabel('QRIS')
+                        .setEmoji('📲')
+                        .setStyle(ButtonStyle.Success),
                 );
 
             await interaction.reply({ 
-                embeds: [paymentEmbed], 
-                files: [qrisFile],
-                components: [row] 
+                embeds: [paymentEmbed],
+                components: [row]
             });
         }
     }
@@ -261,35 +257,35 @@ client.on('interactionCreate', async (interaction) => {
         if (interaction.customId === 'pay_bank_info') {
             await interaction.reply({ 
                 content: '📌 **Detail Transfer Bank:**\n- **Bank BRI:** `0021-01-xxxxxx`\n- **Bank Mandiri:** `124-00-xxxxxx`\n\n*Kirim bukti transfer ke admin jika sudah membayar.*', 
-                ephemeral: true 
+                ephemeral: false 
             });
         }
 
         if (interaction.customId === 'pay_gopay_info') {
             await interaction.reply({ 
-                content: '📌 **Detail GoPay:**\nNomor: `0812-xxxx-xxxx` (A/N Toko Kamu)\n\n*Kirim bukti transfer ke admin jika sudah membayar.*', 
-                ephemeral: true 
+                content: '📌 **Detail E-Wallet:**\n**GoPay:** `0812-xxxx-xxxx` (A/N Toko Kamu)\n**Dana:** `081368936839` (A/N Aldo Arnando)\n\n*Kirim bukti transfer ke admin jika sudah membayar.*', 
+                ephemeral: false 
             });
         }
-        if (interaction.customId === 'pay_dana_info') {
+
+        if (interaction.customId === 'pay_qris_info') {
+            const qrisFile = new AttachmentBuilder(`./${CONFIG.QRIS_FILE_NAME}`);
             await interaction.reply({ 
-                content: '📌 **Detail Dana:**\nNomor: `081368936839` (A/N Aldo Arnando)\n\n*Kirim bukti transfer ke admin jika sudah membayar.*', 
-                ephemeral: true 
+                content: '📌 **Scan QRIS di bawah ini:**',
+                files: [qrisFile],
+                ephemeral: false 
             });
         }
     }
 });
 
 // --- EVENT: MESSAGE MONITORING (ANTI-BADWORD & AUTO RESPONSE) ---
-// --- EVENT: MESSAGE MONITORING (ANTI-BADWORD & AUTO RESPONSE) ---
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
     // 1. LOGIKA ANTI-BADWORD (Berjalan di SEMUA channel)
-    // 1. LOGIKA ANTI-BADWORD (Lebih Akurat)
-    // Regex ini memastikan kata kasar harus berdiri sendiri (bukan bagian dari kata lain)
     const foundBadWord = BADWORDS.find(word => {
-        const regex = new RegExp(`\\b${word}\\b`, 'i'); // \b adalah boundary (batas kata)
+        const regex = new RegExp(`\\b${word}\\b`, 'i');
         return regex.test(message.content);
     });
     
@@ -302,7 +298,6 @@ client.on('messageCreate', async (message) => {
         }
         return; 
     }
-
 
     // 2. AUTO RESPONSE (Hanya jalan di channel yang ada dalam daftar ALLOWED_CHANNELS)
     if (CONFIG.ALLOWED_CHANNELS.includes(message.channel.id)) {
@@ -320,5 +315,4 @@ client.on('messageCreate', async (message) => {
     }
 });
 
-
-client.login(CONFIG.DISCORD_TOKEN);
+client.login(CONFIG.TOKEN);
