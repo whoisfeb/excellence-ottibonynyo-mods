@@ -207,6 +207,7 @@ client.once('ready', async () => {
 });
 
 // --- EVENT: INTERACTION (SLASH COMMANDS & BUTTONS) ---
+// --- EVENT: INTERACTION (SLASH COMMANDS & BUTTONS) ---
 client.on('interactionCreate', async (interaction) => {
     
     if (interaction.isChatInputCommand()) {
@@ -246,9 +247,11 @@ client.on('interactionCreate', async (interaction) => {
                         .setStyle(ButtonStyle.Success),
                 );
 
+            // Hanya admin yang bisa melihat tombol (ephemeral: true)
             await interaction.reply({ 
                 embeds: [paymentEmbed],
-                components: [row]
+                components: [row],
+                ephemeral: true
             });
         }
     }
