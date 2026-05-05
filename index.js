@@ -28,7 +28,7 @@ const CONFIG = {
     LOG_CHANNEL: '1469911922886443141',
     ADMIN_ROLE_ID: [
         '1435255770609487932'
-    ]
+    ],
     QRIS_FILE_NAME: 'excellenceqris.png' ,
     ALLOWED_CHANNELS: [
         '1449340767347933268', 
