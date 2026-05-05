@@ -26,7 +26,9 @@ const CONFIG = {
     GUILD_ID: '1435214111121084500',  
     ANNOUNCE_CHANNEL: '1493745152777523332',
     LOG_CHANNEL: '1469911922886443141',
-    ADMIN_ROLE_ID: '1435255770609487932', 
+    ADMIN_ROLE_ID: [
+        '1435255770609487932'
+    ]
     QRIS_FILE_NAME: 'excellenceqris.png' ,
     ALLOWED_CHANNELS: [
         '1449340767347933268', 
@@ -526,6 +528,16 @@ Aldo Arnando
 // --- EVENT: MESSAGE MONITORING (ANTI-BADWORD & AUTO RESPONSE) ---
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
+
+    // ⛔ SKIP JIKA USER PUNYA SALAH SATU ROLE ADMIN
+    if (
+        message.member &&
+        CONFIG.ADMIN_ROLE_ID.some(roleID =>
+            message.member.roles.cache.has(roleID)
+        )
+    ) {
+        return;
+    }
 
     const foundBadWord = BADWORDS.find(word => {
         const regex = new RegExp(`\\b${word}\\b`, 'i');
