@@ -222,13 +222,16 @@ client.on('interactionCreate', async (interaction) => {
     if (interaction.isChatInputCommand()) {
         if (interaction.commandName === 'payment') {
             
-            // CEK ROLE ID ADMIN
-            if (!interaction.member.roles.cache.has(CONFIG.ADMIN_ROLE_ID)) {
-                return interaction.reply({ 
-                    content: '❌ Kamu tidak memiliki izin (Role Admin) untuk menggunakan perintah ini!', 
-                    flags: 64
-                });
-            }
+            // CEK ROLE ID ADMIN (Mendukung Banyak ID dalam Array)
+const hasAdminRole = CONFIG.ADMIN_ROLE_ID.some(roleId => interaction.member.roles.cache.has(roleId));
+
+if (!hasAdminRole) {
+    return interaction.reply({ 
+        content: '❌ Kamu tidak memiliki izin (Role Admin) untuk menggunakan perintah ini!', 
+        flags: 64 // Menampilkan pesan secara privat (ephemeral)
+    });
+}
+
 
             const paymentEmbed = new EmbedBuilder()
                 .setTitle('💳 METODE PEMBAYARAN RESMI')
