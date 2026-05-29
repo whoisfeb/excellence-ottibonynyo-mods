@@ -377,7 +377,7 @@ COMING SOON
                         value: `
 **Nomor GoPay:**
 \`\`\`
-COMING SOON
+087793757173
 \`\`\`
 **Atas Nama:**
 \`\`\`
@@ -391,11 +391,11 @@ COMING SOON
                         value: `
 **Nomor Dana:**
 \`\`\`
-081368936839
+089630367507
 \`\`\`
 **Atas Nama:**
 \`\`\`
-Aldo Arnando
+-
 \`\`\`
                         `,
                         inline: false
